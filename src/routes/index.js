@@ -1,5 +1,5 @@
 import express from "express";
-import carros from "./carroRoutes;js";
+import carros from "./carroRoutes.js";
 import marcas from "./marcaRoutes.js";
 
 const routes = (app) => {
