@@ -8,4 +8,4 @@ const marcaSchema = new mongoose.Schema({
 
 const marca = mongoose.model("marcas", marcaSchema);
 
-export default {marca, marcaSchema};
+export {marca, marcaSchema};
