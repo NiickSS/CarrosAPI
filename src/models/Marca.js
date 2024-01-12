@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const marcaSchema = new mongoose.Schema({
     id: {type: mongoose.Schema.Types.ObjectId},
-    nome: {type: String},
+    nome: {type: String, required: true},
     nacionalidade: {type: String},
 }, {versionKey: false});
 
