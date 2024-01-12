@@ -1,4 +1,4 @@
-import { describe, it, expect } from "@jest/globals";
+import { describe, it, expect, jest } from "@jest/globals";
 import {marca, marcaSchema} from "../../models/Marca.js";
 
 describe("Testando o modelo Marca", () => {
@@ -16,4 +16,23 @@ describe("Testando o modelo Marca", () => {
         expect(marca).toEqual(objMarca);
     });
 
+    it("Deve simular uma chamada ao BD", () => {
+        const marca2 = {
+            nome: "teste",
+            nacionalidade: "teste2"
+        };
+
+        marca.salvar = jest.fn().mockReturnValue({
+            nome: "teste",
+            nacionalidade: "teste2"
+        });
+
+        const retorno = marca.salvar()
+
+        expect(retorno).toEqual(
+            expect.objectContaining({
+                ...marca2
+            }),
+        );
+    });
 });
