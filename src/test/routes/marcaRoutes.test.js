@@ -38,6 +38,14 @@ describe("POST em /marcas", () => {
     });
 });
 
+describe("GET em /marcas/id", () => {
+    it("Deve retornar a marca adicionada", async () => {
+        await request(app)
+            .get(`/marcas/${idResposta}`)
+            .expect(200);
+    });
+});
+
 describe("DELETE em /marcas", () => {
     it("Deve excluir a marca adicionada", async () => {
         await request(app)
@@ -46,10 +54,3 @@ describe("DELETE em /marcas", () => {
     });
 });
 
-describe("GET em /marcas/id", () => {
-    it("Deve retornar a marca adicionada", async () => {
-        await request(app)
-            .get(`/marcas/${idResposta}`)
-            .expect(200);
-    });
-});
