@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import {marca} from "../models/Marca.js";
 
 class MarcaController {
@@ -15,9 +16,18 @@ class MarcaController {
         try{
             const id = req.params.id;
             const marcaEncontrada = await marca.findById(id);
-            res.status(200).json(marcaEncontrada);
+
+            if(marcaEncontrada !== null){
+                res.status(200).json(marcaEncontrada);
+            } else{
+                res.status(404).json({message: "ID do autor nao encontrado!"});
+            }
         } catch(erro){
-            res.status(500).json({message: `${erro.message} - falha na requisicao da marca!`});
+            if(erro instanceof mongoose.Error.CastError){
+                res.status(400).json({message: "Um ou mais dados fornecidos estao incorretos!"});
+            } else{
+                res.status(500).json({message: "Erro interno do servidor!"});    
+            }
         }
     };
 
